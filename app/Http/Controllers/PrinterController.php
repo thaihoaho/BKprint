@@ -23,7 +23,7 @@ class PrinterController extends Controller
      */
     public function create()
     {
-        //
+        //return Inertia::render('Printers/Create');
     }
 
     /**
@@ -32,22 +32,43 @@ class PrinterController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'Brand' => 'required|string|max:50',
+            'Model' => 'required|string|max:50',
+            'Description' => 'required|string',
+            'CampusName' => 'required|string|max:50',
+            'BuildingName' => 'required|string|max:50',
+            'RoomNumber' => 'required|string|max:50',
+            // 'status' thiếu cái này a
+        ]);
+ 
+        $printers = new Printer();
+        $printers->Brand = $request->Brand;
+        $printers->Model = $request->Model;
+        $printers->Description = $request->Description;
+        $printers->CampusName = $request->CampusName;
+        $printers->BuildingName = $request->BuildingName;
+        $printers->RoomNumber = $request->RoomNumber;
+        $printers->save();
+ 
+        //return Redirect::route('Printers.index')->with('success', 'Post created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Printer $printer)
     {
-        //
+        // return Inertia::render('Printers/Show', ['Printer' => $printer]);
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Printer $printer)
     {
-        //
+        // return Inertia::render('Printers/Edit', ['Printer' => $printer]);
     }
 
     /**
@@ -55,14 +76,34 @@ class PrinterController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'Brand' => 'required|string|max:50',
+            'Model' => 'required|string|max:50',
+            'Description' => 'required|string',
+            'CampusName' => 'required|string|max:50',
+            'BuildingName' => 'required|string|max:50',
+            'RoomNumber' => 'required|string|max:50',
+            // 'status' thiếu cái này a
+        ]);
+ 
+        $printers = new Printer();
+        $printers->Brand = $request->Brand;
+        $printers->Model = $request->Model;
+        $printers->Description = $request->Description;
+        $printers->CampusName = $request->CampusName;
+        $printers->BuildingName = $request->BuildingName;
+        $printers->RoomNumber = $request->RoomNumber;
+        $printers->save();
+ 
+        //return Redirect::route('Printers.index')->with('success', 'Post created successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        // return Redirect::route('posts.index')->with('success', 'Post deleted successfully.');
     }
 }

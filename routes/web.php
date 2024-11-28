@@ -2,6 +2,7 @@
 use App\Http\Controllers\PrinterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\print_jobController;
+use App\Http\Controllers\PrinterConfigurationController;
 use App\Http\Controllers\PostController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,11 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::resource('printers', PrinterController::class)
         ->names('printers');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('printerconfig', PrinterConfigurationController::class)
+        ->names('printerconfig');
 });
 
 Route::middleware(['auth'])->group(function () {

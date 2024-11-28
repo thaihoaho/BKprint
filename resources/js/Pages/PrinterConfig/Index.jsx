@@ -6,7 +6,7 @@ import SecondaryButton from '@/Components/SecondaryButton';
 import { useForm } from '@inertiajs/react';
 import { useEffect } from 'react';
 
-export default function Index({ auth, printers, message }) {
+export default function Index({ auth, printerConfig, message }) {
 
     const { flash } = usePage().props
 
@@ -15,15 +15,15 @@ export default function Index({ auth, printers, message }) {
         processing,
     } = useForm();
 
-    const deleteprinter = (id) => {
-        destroy(route('printers.destroy', { id: id }));
+    const deleteprinterconfig = (id) => {
+        destroy(route('printerConfig.destroy', { id: id }));
     }
     return (
         <AuthenticatedLayout
             user={auth.user}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">printers</h2>}
         >
-            <Head title="printers" />
+            <Head title="printerconfig" />
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                     {flash.success && (
@@ -31,7 +31,7 @@ export default function Index({ auth, printers, message }) {
                             <span className="font-medium">{flash.success}</span>
                         </div>
                     )}
-                    <NavLink href={route('printers.create')} active={route().current('printers.create')}>
+                    <NavLink href={route('printerConfig.create')} active={route().current('printerConfig.create')}>
                         <PrimaryButton>Create</PrimaryButton>
                     </NavLink>
 
@@ -41,7 +41,7 @@ export default function Index({ auth, printers, message }) {
                                 <tr>
 
                                     <th scope="col" className="px-6 py-3">
-                                        PrinterID
+                                        printerConfig
                                     </th>
                                     <th scope="col" className="px-6 py-3">
                                         Brand
@@ -64,40 +64,34 @@ export default function Index({ auth, printers, message }) {
                                     <th scope="col" className="px-6 py-3">
                                         created_at
                                     </th>
-                                    <th scope="col" className="px-6 py-3">
-                                        updated_at
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {printers.map(printer => (
                                     <tr key={printer.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            {printer.PrinterID}
+                                            {printerConfig.PrinterID}
                                         </th>
                                         <td className="px-6 py-4">
-                                            <p className='w-52 truncate text-ellipsis overflow-hidden '>{printer.Brand}</p>
+                                            <p className='w-52 truncate text-ellipsis overflow-hidden '>{printerConfig.ConfigID}</p>
                                         </td>
                                         <td className="px-6 py-4">
-                                            <p className='w-52 truncate text-ellipsis overflow-hidden '>{printer.Model}</p>
+                                            <p className='w-52 truncate text-ellipsis overflow-hidden '>{printerConfig.SPSOID}</p>
                                         </td>
                                         <td className="px-6 py-4">
-                                            <p className='w-52 truncate text-ellipsis overflow-hidden '>{printer.Description}</p>
+                                            <p className='w-52 truncate text-ellipsis overflow-hidden '>{printerConfig.PrinterID}</p>
                                         </td>
                                         <td className="px-6 py-4">
-                                            <p className='w-52 truncate text-ellipsis overflow-hidden '>{printer.CampusName}</p>
+                                            <p className='w-52 truncate text-ellipsis overflow-hidden '>{printerConfig.DefaultPages}</p>
                                         </td>
                                         <td className="px-6 py-4">
-                                            <p className='w-52 truncate text-ellipsis overflow-hidden '>{printer.BuildingName}</p>
+                                            <p className='w-52 truncate text-ellipsis overflow-hidden '>{printerConfig.AllowedFileTypes}</p>
                                         </td>
                                         <td className="px-6 py-4">
-                                            <p className='w-52 truncate text-ellipsis overflow-hidden '>{printer.RoomNumber}</p>
+                                            <p className='w-52 truncate text-ellipsis overflow-hidden '>{printerConfig.ConfigDate}</p>
                                         </td>
                                         <td className="px-6 py-4">
-                                            <p className='w-52 truncate text-ellipsis overflow-hidden '>{printer.created_at}</p>
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <p className='w-52 truncate text-ellipsis overflow-hidden '>{printer.updated_at}</p>
+                                            <p className='w-52 truncate text-ellipsis overflow-hidden '>{printerConfig.ConfigPrinterStatus}</p>
                                         </td>
 
                                         <td className="px-6 py-4">
