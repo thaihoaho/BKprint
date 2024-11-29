@@ -1,14 +1,12 @@
 import React from 'react'
 import classNames from 'classnames/bind'
 import styles from './HomePage.module.css';
-import { asset } from '../../../../assets/asset'
+import { asset } from '../../assets/asset'
 import { Link } from 'react-router-dom';
 import GuestLayout from '@/Layouts/GuestLayout';
-
-import { Head, Link, usePage } from '@inertiajs/react';
 const clx = classNames.bind(styles)
 
-export default function Index({ guest, homepage, message }) {
+export default function Index({ auth, homepage, message }) {
   return (
     <GuestLayout>
     <div className={clx('wrapper')}>
@@ -29,6 +27,6 @@ export default function Index({ guest, homepage, message }) {
         <Link to='/login' className={clx('cta-button')}>In ngay</Link>
       </div>
      </div>
-     </GuestLayout> 
+     </GuestLayout>
   )
 }

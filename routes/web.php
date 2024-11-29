@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\PrinterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\print_jobController;
@@ -33,6 +35,14 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::resource('print_jobs', Print_JobController::class)
         ->names('print_jobs');
+});
+
+
+
+
+Route::middleware(['guest'])->group(function () {
+    Route::resource('homepage', HomePageController::class)
+        ->names('homepage');
 });
 
 Route::middleware('auth')->group(function () {

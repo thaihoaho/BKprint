@@ -21,9 +21,9 @@ export default function Index({ auth, printers, message }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">printers</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Printers</h2>}
         >
-            <Head title="printers" />
+            <Head title="Printers" />
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                     {flash.success && (
