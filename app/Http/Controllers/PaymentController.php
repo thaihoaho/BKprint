@@ -16,7 +16,7 @@ class PaymentController extends Controller
 
     public function index()
     {
-        $products = $this->paymentService->getAllPayments();
+        $payment = $this->paymentService->getAllPayments();
         // return view('payment.index', compact('payment'));
     }
 
@@ -28,10 +28,8 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|numeric',
-            'quantity' => 'required|integer',
+            'PaymentMethod' => 'required|string|max:50',
+            'Amount' => 'required|numeric',
         ]);
 
         $this->paymentService->createPayment($data);
@@ -40,7 +38,7 @@ class PaymentController extends Controller
 
     public function show($id)
     {
-        $product = $this->paymentService->getPaymentById($id);
+        $payment = $this->paymentService->getPaymentById($id);
         // return view('payemnt.show', compact('payment'));
     }
 }
